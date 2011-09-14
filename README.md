@@ -17,3 +17,7 @@ are separated into distinct base directories. In more detail, the local reposito
 Obviously, this repository layout is not compatible with the traditional local repository layout, i.e. it makes no sense
 to share such a local repository with Maven 2.x or even stock Maven 3.x. The primary purpose of this layout is to
 simplify periodic cleanup of snapshots during continuous integration builds.
+
+**Warning:** Some Maven plugins bypass the repository API and directly manipulate files within the local repository,
+assuming the traditional layout. Apparently, builds using such plugins will not function properly when this extension
+used.
