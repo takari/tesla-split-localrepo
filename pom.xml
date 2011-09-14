@@ -21,7 +21,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Tesla : Splitt Local Repository</name>
+  <name>Tesla : Split Local Repository</name>
   <description>
     Aether extension that provides a local repository which separates snapshots and releases into distinct base
     directories to simplify periodic cleanup.
