@@ -84,6 +84,12 @@
       <version>${aetherVersion}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.sonatype.aether</groupId>
+      <artifactId>aether-test-util</artifactId>
+      <version>${aetherVersion}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>

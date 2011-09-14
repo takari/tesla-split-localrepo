@@ -23,6 +23,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.junit.rules.TestName;
 import org.sonatype.aether.artifact.Artifact;
 import org.sonatype.aether.metadata.Metadata;
 import org.sonatype.aether.repository.LocalArtifactRegistration;
@@ -33,6 +34,7 @@ import org.sonatype.aether.repository.LocalMetadataRequest;
 import org.sonatype.aether.repository.LocalMetadataResult;
 import org.sonatype.aether.repository.LocalRepository;
 import org.sonatype.aether.repository.RemoteRepository;
+import org.sonatype.aether.test.impl.SysoutLogger;
 import org.sonatype.aether.util.DefaultRepositorySystemSession;
 import org.sonatype.aether.util.artifact.DefaultArtifact;
 import org.sonatype.aether.util.metadata.DefaultMetadata;
@@ -49,6 +51,9 @@ public class SplitLocalRepositoryManagerTest
     private static final String RR = SplitLocalRepositoryManager.REMOTE_RELEASES;
 
     private static final String RS = SplitLocalRepositoryManager.REMOTE_SNAPSHOTS;
+
+    @Rule
+    public TestName testName = new TestName();
 
     @Rule
     public TemporaryFolder localRepoDir = new TemporaryFolder();
@@ -96,7 +101,9 @@ public class SplitLocalRepositoryManagerTest
     @Before
     public void setUp()
     {
-        lrm = new SplitLocalRepositoryManager( localRepoDir.getRoot() );
+        System.out.println( "========== " + testName.getMethodName() );
+
+        lrm = new SplitLocalRepositoryManager( localRepoDir.getRoot() ).setLogger( new SysoutLogger() );
         session = new DefaultRepositorySystemSession();
         central = new RemoteRepository( "central", "default", "file:" );
     }
