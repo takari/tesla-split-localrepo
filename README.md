@@ -20,4 +20,4 @@ simplify periodic cleanup of snapshots during continuous integration builds.
 
 **Warning:** Some Maven plugins bypass the repository API and directly manipulate files within the local repository,
 assuming the traditional layout. Apparently, builds using such plugins will not function properly when this extension
-used.
+is used.
