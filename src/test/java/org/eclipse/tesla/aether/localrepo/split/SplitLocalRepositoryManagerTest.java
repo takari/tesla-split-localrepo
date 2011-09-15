@@ -284,6 +284,64 @@ public class SplitLocalRepositoryManagerTest
     }
 
     @Test
+    public void testFindTimestampedSnapshotArtifact()
+        throws Exception
+    {
+        Artifact artifact = newArtifact( "g.i.d:aid:1.0-20110914.193659-123" );
+
+        LocalArtifactRequest request = new LocalArtifactRequest( artifact, Arrays.asList( central ), "" );
+
+        LocalArtifactResult result = lrm.find( session, request );
+        assertNull( result.getFile() );
+        assertFalse( result.isAvailable() );
+
+        File file = new File( localRepoDir.getRoot(), lrm.getPathForLocalArtifact( artifact ) );
+        create( file );
+
+        result = lrm.find( session, request );
+        assertNull( result.getFile() );
+        assertFalse( result.isAvailable() );
+        assertNull( result.getRepository() );
+
+        file = new File( localRepoDir.getRoot(), lrm.getPathForRemoteArtifact( artifact, central, "" ) );
+        create( file );
+
+        lrm.add( session, new LocalArtifactRegistration( artifact, central, Arrays.asList( "" ) ) );
+
+        result = lrm.find( session, request );
+        assertEquals( file, result.getFile() );
+        assertTrue( result.isAvailable() );
+        assertEquals( central, result.getRepository() );
+    }
+
+    @Test
+    public void testFindNonTimestampedSnapshotArtifact()
+        throws Exception
+    {
+        Artifact artifact = newArtifact( "g.i.d:aid:1.0-SNAPSHOT" );
+
+        LocalArtifactRequest request = new LocalArtifactRequest( artifact, Arrays.asList( central ), "" );
+
+        File remoteFile = new File( localRepoDir.getRoot(), lrm.getPathForRemoteArtifact( artifact, central, "" ) );
+        create( remoteFile );
+
+        lrm.add( session, new LocalArtifactRegistration( artifact, central, Arrays.asList( "" ) ) );
+
+        LocalArtifactResult result = lrm.find( session, request );
+        assertEquals( remoteFile, result.getFile() );
+        assertTrue( result.isAvailable() );
+        assertEquals( central, result.getRepository() );
+
+        File localFile = new File( localRepoDir.getRoot(), lrm.getPathForLocalArtifact( artifact ) );
+        create( localFile );
+
+        result = lrm.find( session, request );
+        assertEquals( localFile, result.getFile() );
+        assertTrue( result.isAvailable() );
+        assertNull( result.getRepository() );
+    }
+
+    @Test
     public void testFindLocalSnapshotMetadata()
         throws Exception
     {
