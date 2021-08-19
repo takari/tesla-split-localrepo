@@ -103,7 +103,7 @@ public class SplitLocalRepositoryManagerTest
     {
         System.out.println( "========== " + testName.getMethodName() );
 
-        lrm = new SplitLocalRepositoryManager( localRepoDir.getRoot() ).setLogger( new SysoutLogger() );
+        lrm = new SplitLocalRepositoryManager( localRepoDir.getRoot() );
         session = new DefaultRepositorySystemSession();
         central = new RemoteRepository( "central", "default", "file:" );
     }

@@ -9,26 +9,18 @@ package org.eclipse.tesla.aether.localrepo.split;
  *******************************************************************************/
 
 import org.codehaus.plexus.component.annotations.Component;
-import org.codehaus.plexus.component.annotations.Requirement;
 import org.sonatype.aether.repository.LocalRepository;
 import org.sonatype.aether.repository.LocalRepositoryManager;
 import org.sonatype.aether.repository.NoLocalRepositoryManagerException;
 import org.sonatype.aether.spi.localrepo.LocalRepositoryManagerFactory;
-import org.sonatype.aether.spi.locator.Service;
-import org.sonatype.aether.spi.locator.ServiceLocator;
-import org.sonatype.aether.spi.log.Logger;
-import org.sonatype.aether.spi.log.NullLogger;
 
 /**
  * Creates local repository managers for the local repository types {@code "split"} and {@code ""} (automatic).
  */
 @Component( role = LocalRepositoryManagerFactory.class, hint = "split" )
 public class SplitLocalRepositoryManagerFactory
-    implements LocalRepositoryManagerFactory, Service
+    implements LocalRepositoryManagerFactory
 {
-
-    @Requirement
-    private Logger logger = NullLogger.INSTANCE;
 
     public LocalRepositoryManager newInstance( LocalRepository repository )
         throws NoLocalRepositoryManagerException
@@ -41,17 +33,6 @@ public class SplitLocalRepositoryManagerFactory
         {
             throw new NoLocalRepositoryManagerException( repository );
         }
-    }
-
-    public void initService( ServiceLocator locator )
-    {
-        setLogger( locator.getService( Logger.class ) );
-    }
-
-    public SplitLocalRepositoryManagerFactory setLogger( Logger logger )
-    {
-        this.logger = ( logger != null ) ? logger : NullLogger.INSTANCE;
-        return this;
     }
 
     public int getPriority()

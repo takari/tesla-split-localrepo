@@ -31,8 +31,8 @@ import org.sonatype.aether.repository.LocalMetadataResult;
 import org.sonatype.aether.repository.LocalRepository;
 import org.sonatype.aether.repository.LocalRepositoryManager;
 import org.sonatype.aether.repository.RemoteRepository;
-import org.sonatype.aether.spi.log.Logger;
-import org.sonatype.aether.spi.log.NullLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  */
@@ -48,11 +48,12 @@ class SplitLocalRepositoryManager
 
     static final String REMOTE_RELEASES = "rr/";
 
+    private static final Logger logger = LoggerFactory.getLogger(SplitLocalRepositoryManager.class);
+
     private final LocalRepository repository;
 
     private TrackingFileManager trackingFileManager;
 
-    private Logger logger = NullLogger.INSTANCE;
 
     public SplitLocalRepositoryManager( File basedir )
     {
@@ -62,13 +63,6 @@ class SplitLocalRepositoryManager
         }
         repository = new LocalRepository( basedir.getAbsoluteFile(), "splitted" );
         trackingFileManager = new TrackingFileManager();
-    }
-
-    public SplitLocalRepositoryManager setLogger( Logger logger )
-    {
-        this.logger = ( logger != null ) ? logger : NullLogger.INSTANCE;
-        trackingFileManager.setLogger( logger );
-        return this;
     }
 
     public LocalRepository getRepository()

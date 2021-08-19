@@ -20,9 +20,8 @@ import java.nio.channels.FileLock;
 import java.nio.channels.OverlappingFileLockException;
 import java.util.Map;
 import java.util.Properties;
-
-import org.sonatype.aether.spi.log.Logger;
-import org.sonatype.aether.spi.log.NullLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Manages potentially concurrent accesses to a properties file.
@@ -30,13 +29,7 @@ import org.sonatype.aether.spi.log.NullLogger;
 class TrackingFileManager
 {
 
-    private Logger logger = NullLogger.INSTANCE;
-
-    public TrackingFileManager setLogger( Logger logger )
-    {
-        this.logger = ( logger != null ) ? logger : NullLogger.INSTANCE;
-        return this;
-    }
+    private static final Logger logger = LoggerFactory.getLogger(TrackingFileManager.class);
 
     public Properties read( File file )
     {

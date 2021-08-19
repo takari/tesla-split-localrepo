@@ -38,6 +38,7 @@
 
   <properties>
     <aetherVersion>1.12</aetherVersion> <!-- NOTE: Chosen to match API used in required Maven version -->
+    <slf4jVersion>1.7.32</slf4jVersion>
   </properties>
 
   <dependencies>
@@ -45,6 +46,12 @@
       <groupId>org.sonatype.aether</groupId>
       <artifactId>aether-api</artifactId>
       <version>${aetherVersion}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4jVersion}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -88,6 +95,11 @@
       <groupId>org.sonatype.aether</groupId>
       <artifactId>aether-test-util</artifactId>
       <version>${aetherVersion}</version>
+      <scope>test</scope>
+    </dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>${slf4jVersion}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
