@@ -14,7 +14,6 @@ import java.io.Reader;
 import java.io.Writer;
 
 import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.IOUtil;
 import org.codehaus.plexus.util.ReaderFactory;
 import org.codehaus.plexus.util.WriterFactory;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
@@ -93,18 +92,13 @@ class MetadataUtils
     private static Xpp3Dom readXml( File src )
         throws IOException
     {
-        Reader reader = ReaderFactory.newXmlReader( src );
-        try
+        try ( Reader reader = ReaderFactory.newXmlReader( src ) )
         {
             return Xpp3DomBuilder.build( reader, false );
         }
         catch ( XmlPullParserException e )
         {
             throw (IOException) new IOException( e.getMessage() ).initCause( e );
-        }
-        finally
-        {
-            IOUtil.close( reader );
         }
     }
 
