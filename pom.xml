@@ -12,9 +12,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>io.tesla</groupId>
-    <artifactId>tesla</artifactId>
-    <version>4</version>
+    <groupId>io.takari</groupId>
+    <artifactId>takari</artifactId>
+    <version>28</version>
   </parent>
 
   <artifactId>tesla-split-localrepo</artifactId>
@@ -110,17 +110,16 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>animal-sniffer-maven-plugin</artifactId>
-        <version>1.7</version>
         <configuration>
           <signature>
             <groupId>org.codehaus.mojo.signature</groupId>
-            <artifactId>java15</artifactId>
+            <artifactId>java18</artifactId>
             <version>1.0</version>
           </signature>
         </configuration>
         <executions>
           <execution>
-            <id>check-java-1.5-compat</id>
+            <id>check-java-1.8-compat</id>
             <phase>process-classes</phase>
             <goals>
               <goal>check</goal>
