@@ -37,18 +37,11 @@
   </licenses>
 
   <properties>
-    <aetherVersion>1.12</aetherVersion> <!-- NOTE: Chosen to match API used in required Maven version -->
     <plexusComponentVersion>2.1.0</plexusComponentVersion>
     <slf4jVersion>1.7.32</slf4jVersion>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>org.sonatype.aether</groupId>
-      <artifactId>aether-api</artifactId>
-      <version>${aetherVersion}</version>
-      <scope>provided</scope>
-    </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
@@ -56,9 +49,9 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.sonatype.aether</groupId>
-      <artifactId>aether-spi</artifactId>
-      <version>${aetherVersion}</version>
+      <groupId>org.apache.maven.resolver</groupId>
+      <artifactId>maven-resolver-spi</artifactId>
+      <version>1.7.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -87,17 +80,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.sonatype.aether</groupId>
-      <artifactId>aether-util</artifactId>
-      <version>${aetherVersion}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.sonatype.aether</groupId>
-      <artifactId>aether-test-util</artifactId>
-      <version>${aetherVersion}</version>
-      <scope>test</scope>
-    </dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4jVersion}</version>

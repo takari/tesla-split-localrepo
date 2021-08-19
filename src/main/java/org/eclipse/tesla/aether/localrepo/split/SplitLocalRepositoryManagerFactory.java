@@ -9,10 +9,11 @@ package org.eclipse.tesla.aether.localrepo.split;
  *******************************************************************************/
 
 import org.codehaus.plexus.component.annotations.Component;
-import org.sonatype.aether.repository.LocalRepository;
-import org.sonatype.aether.repository.LocalRepositoryManager;
-import org.sonatype.aether.repository.NoLocalRepositoryManagerException;
-import org.sonatype.aether.spi.localrepo.LocalRepositoryManagerFactory;
+import org.eclipse.aether.RepositorySystemSession;
+import org.eclipse.aether.repository.LocalRepository;
+import org.eclipse.aether.repository.LocalRepositoryManager;
+import org.eclipse.aether.repository.NoLocalRepositoryManagerException;
+import org.eclipse.aether.spi.localrepo.LocalRepositoryManagerFactory;
 
 /**
  * Creates local repository managers for the local repository types {@code "split"} and {@code ""} (automatic).
@@ -22,12 +23,13 @@ public class SplitLocalRepositoryManagerFactory
     implements LocalRepositoryManagerFactory
 {
 
-    public LocalRepositoryManager newInstance( LocalRepository repository )
+    @Override
+    public LocalRepositoryManager newInstance( RepositorySystemSession session, LocalRepository repository )
         throws NoLocalRepositoryManagerException
     {
         if ( "".equals( repository.getContentType() ) || "split".equals( repository.getContentType() ) )
         {
-            return new SplitLocalRepositoryManager( repository.getBasedir() ).setLogger( logger );
+            return new SplitLocalRepositoryManager( repository.getBasedir() );
         }
         else
         {
@@ -35,9 +37,9 @@ public class SplitLocalRepositoryManagerFactory
         }
     }
 
-    public int getPriority()
+    public float getPriority()
     {
-        return 50;
+        return 50f;
     }
 
 }

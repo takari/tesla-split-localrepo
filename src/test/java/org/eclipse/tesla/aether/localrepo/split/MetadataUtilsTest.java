@@ -17,8 +17,8 @@ import org.custommonkey.xmlunit.XMLAssert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import org.sonatype.aether.metadata.Metadata;
-import org.sonatype.aether.util.metadata.DefaultMetadata;
+import org.eclipse.aether.metadata.Metadata;
+import org.eclipse.aether.metadata.DefaultMetadata;
 
 /**
  */

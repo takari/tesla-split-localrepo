@@ -24,20 +24,19 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.rules.TestName;
-import org.sonatype.aether.artifact.Artifact;
-import org.sonatype.aether.metadata.Metadata;
-import org.sonatype.aether.repository.LocalArtifactRegistration;
-import org.sonatype.aether.repository.LocalArtifactRequest;
-import org.sonatype.aether.repository.LocalArtifactResult;
-import org.sonatype.aether.repository.LocalMetadataRegistration;
-import org.sonatype.aether.repository.LocalMetadataRequest;
-import org.sonatype.aether.repository.LocalMetadataResult;
-import org.sonatype.aether.repository.LocalRepository;
-import org.sonatype.aether.repository.RemoteRepository;
-import org.sonatype.aether.test.impl.SysoutLogger;
-import org.sonatype.aether.util.DefaultRepositorySystemSession;
-import org.sonatype.aether.util.artifact.DefaultArtifact;
-import org.sonatype.aether.util.metadata.DefaultMetadata;
+import org.eclipse.aether.artifact.Artifact;
+import org.eclipse.aether.metadata.Metadata;
+import org.eclipse.aether.repository.LocalArtifactRegistration;
+import org.eclipse.aether.repository.LocalArtifactRequest;
+import org.eclipse.aether.repository.LocalArtifactResult;
+import org.eclipse.aether.repository.LocalMetadataRegistration;
+import org.eclipse.aether.repository.LocalMetadataRequest;
+import org.eclipse.aether.repository.LocalMetadataResult;
+import org.eclipse.aether.repository.LocalRepository;
+import org.eclipse.aether.repository.RemoteRepository;
+import org.eclipse.aether.DefaultRepositorySystemSession;
+import org.eclipse.aether.artifact.DefaultArtifact;
+import org.eclipse.aether.metadata.DefaultMetadata;
 
 /**
  */
@@ -105,7 +104,7 @@ public class SplitLocalRepositoryManagerTest
 
         lrm = new SplitLocalRepositoryManager( localRepoDir.getRoot() );
         session = new DefaultRepositorySystemSession();
-        central = new RemoteRepository( "central", "default", "file:" );
+        central = new RemoteRepository.Builder( "central", "default", "file:" ).build();
     }
 
     @After
