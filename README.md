@@ -1,6 +1,8 @@
 Tesla Split Local Repository
 ============================
 
+This project is being archived, while main features are today provided by Maven Resolver 1.8+, see here https://maven.apache.org/resolver/local-repository.html#split-local-repository
+
 An extension for Tesla that makes it use an alternative format for the local repository where snapshots and releases
 are separated into distinct base directories. In more detail, the local repository is organized as follows:
 
